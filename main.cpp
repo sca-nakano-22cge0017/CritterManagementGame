@@ -19,6 +19,9 @@ public:
   void Ranaways();
   //追加機能：家出
   //Additional features：ranaways
+  void Sick();
+  //追加機能：病気
+  //Additional features：sick
 
 private:
   int m_Hunger;
@@ -72,6 +75,40 @@ void Critter::Talk()
     cout << "happy.\n";
   }
 
+  cout << "I am ";
+	
+	if (m_Hunger > 10)
+	{
+		cout << "extremely";
+	}
+  	else if (m_Hunger > 5)
+	{
+		cout << "very";
+	}
+	else
+	{
+		cout << "not";
+	}
+	
+	cout << " hungry.\n";
+	
+	cout << "I am ";
+	
+	if (m_Boredom > 10)
+	{
+		cout << "extremely";
+	}
+	else if (m_Boredom > 5)
+	{
+		cout << "very";
+	}
+	else
+	{
+		cout << "not";
+	}
+	
+	cout << " bored.\n";
+  
   PassTime();
 }
 
@@ -122,7 +159,7 @@ void Critter::Walk(int exercise) //追加機能 / Additional features
       cout << "That's a dog. So cute!!\n";
       break;
     case 4:
-      cout << "I smell a nice scent. This is ... curry?\n";
+      cout << "I smell a nice smell. This is ... curry?\n";
       break;
     case 5:
       cout << "Wow!! It started to rain!! It's cold...!\n";
@@ -162,6 +199,25 @@ void Critter::Ranaways() //追加機能 / Additional features
 
     cout << "---A few hours later---\n\n";
     cout << "He came back!! Woohoo!!\n";
+    
+    m_Boredom -= 2;
+
+    PassTime();
+  }
+}
+
+void Critter::Sick() //追加機能 / Additional features
+{
+  //Healthが低いと体調不良、風邪になる
+  if ((m_Health <= 30) && (m_Health > 20))
+  {
+    cout << "\nCritter seems unwell.\n";
+
+    PassTime();
+  }
+  if (m_Health <= 20)
+  {
+    cout << "Critter seems to have caught a cold.\n";
 
     PassTime();
   }
@@ -170,12 +226,12 @@ void Critter::Ranaways() //追加機能 / Additional features
 int main()
 {
   Critter crit;
-  crit.Talk();
 
   int choice;
   do
   {
     crit.Ranaways();
+    crit.Sick();
     
     cout << "\nCritter Caretaker\n\n";
     cout << "0 - Quit\n";
